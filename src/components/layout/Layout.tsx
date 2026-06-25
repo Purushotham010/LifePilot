@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../lib/AuthContext';
-import { LayoutDashboard, CheckSquare, LogOut, BrainCircuit, Menu, X } from 'lucide-react';
+import { LayoutDashboard, CheckSquare, LogOut, BrainCircuit, Menu, X, Home } from 'lucide-react';
 import ChatBot from '../features/ChatBot';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -12,6 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Tasks & Planning', href: '/tasks', icon: CheckSquare },
+    { name: 'Landing / Pitch', href: '/', icon: Home },
   ];
 
   return (

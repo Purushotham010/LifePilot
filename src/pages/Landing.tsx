@@ -174,9 +174,9 @@ export default function Landing() {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-2">
                     <span className="w-3 h-3 rounded-full bg-rose-500 animate-pulse" />
-                    <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Active Threat Detected</span>
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Scheduling Risk Detected</span>
                   </div>
-                  <span className="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">PROACTIVE RESCUE</span>
+                  <span className="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">PROACTIVE INTERVENTION</span>
                 </div>
 
                 <div className="space-y-4">

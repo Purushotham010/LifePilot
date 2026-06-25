@@ -30,6 +30,12 @@ model Task {
   status        String   @default("Pending") // Pending, Completed, Overdue
   progress      Int      @default(0) // 0-100
   aiScore       Int?     // Priority score by AI
+  
+  // AI Risk Analysis
+  riskLevel     String   @default("Low") // Low, Medium, High
+  riskReason    String?
+  rescuePlan    String?  // JSON string array
+
   createdAt     DateTime @default(now())
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   aiPlans       AIPlan[]
