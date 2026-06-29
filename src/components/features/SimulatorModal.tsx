@@ -57,7 +57,7 @@ export default function SimulatorModal({ isOpen, onClose, task }: SimulatorModal
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-deep-space-violet border border-rich-violet/80 w-full max-w-lg rounded-[24px] p-6 relative overflow-hidden"
+          className="bg-deep-space-violet border border-rich-violet/80 w-full max-w-lg rounded-[24px] p-6 relative overflow-y-auto max-h-[90vh] custom-scrollbar"
         >
           <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white">
             <X className="w-5 h-5" />

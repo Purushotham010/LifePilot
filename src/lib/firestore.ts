@@ -181,6 +181,7 @@ export const firestoreDb = {
       try {
         const q = query(collection(db, 'tasks'), where('userId', '==', args.where.userId));
         const snapshot = await getDocs(q);
+        if (snapshot.empty) return { count: 0 };
         const batch = writeBatch(db);
         snapshot.forEach(docSnap => {
           batch.delete(docSnap.ref);
@@ -220,6 +221,7 @@ export const firestoreDb = {
       try {
         const q = query(collection(db, 'tasks'), where('userId', '==', args.where.task.userId));
         const snapshot = await getDocs(q);
+        if (snapshot.empty) return { count: 0 };
         const batch = writeBatch(db);
         snapshot.forEach(docSnap => {
           batch.update(docSnap.ref, { aiPlans: [] });
@@ -251,6 +253,7 @@ export const firestoreDb = {
       try {
         const q = query(collection(db, 'habits'), where('userId', '==', args.where.userId));
         const snapshot = await getDocs(q);
+        if (snapshot.empty) return { count: 0 };
         const batch = writeBatch(db);
         snapshot.forEach(docSnap => {
           batch.delete(docSnap.ref);
@@ -285,6 +288,7 @@ export const firestoreDb = {
       try {
         const q = query(collection(db, 'analytics'), where('userId', '==', args.where.userId));
         const snapshot = await getDocs(q);
+        if (snapshot.empty) return { count: 0 };
         const batch = writeBatch(db);
         snapshot.forEach(docSnap => {
           batch.delete(docSnap.ref);
@@ -339,6 +343,7 @@ export const firestoreDb = {
       try {
         const q = query(collection(db, 'ai_activities'), where('userId', '==', args.where.userId));
         const snapshot = await getDocs(q);
+        if (snapshot.empty) return { count: 0 };
         const batch = writeBatch(db);
         snapshot.forEach(docSnap => {
           batch.delete(docSnap.ref);

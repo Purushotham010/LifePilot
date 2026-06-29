@@ -144,18 +144,18 @@ export default function VoiceCoach({ isOpen, onClose, task }: VoiceCoachProps) {
       const response = await fetchAPI('/ai/chat', {
         method: 'POST',
         body: JSON.stringify({
-          message: `The user said: "${userMsg}". We are in a real-time voice call session about the task: "${task?.title}". Context: ${task?.description || ''}. Urgent Risk Reason: ${task?.riskReason || ''}. The emergency rescue plan is: ${task?.rescuePlan || 'none'}. Keep your answer extremely short (1-2 sentences maximum), direct, highly motivating, and voice-optimal. Prompt them with a concrete question to make them take action immediately.`,
+          message: `The user said: "${userMsg}". We are in a real-time voice call session about the task: "${task?.title}". Context: ${task?.description || ''}. Why it needs attention: ${task?.riskReason || ''}. The focus plan is: ${task?.rescuePlan || 'none'}. Keep your answer extremely short (1-2 sentences maximum), direct, highly motivating, and voice-optimal. Prompt them with a concrete question to make them take action immediately.`,
           history: []
         })
       });
 
-      const reply = response.text || "Let's focus on the critical path. What is your first step?";
+      const reply = response.text || "Let's focus on the most important step. What is it?";
       setAiResponse(reply);
       setConversation(prev => [...prev, { role: 'ai', text: reply }]);
       await speakText(reply);
     } catch (err) {
       console.error(err);
-      const fallbackMsg = "I didn't catch that fully, but let's stick to our critical path. What's holding you back?";
+      const fallbackMsg = "I didn't catch that fully, but let's stick to our focus plan. What's holding you back?";
       setAiResponse(fallbackMsg);
       await speakText(fallbackMsg);
     }
@@ -170,7 +170,7 @@ export default function VoiceCoach({ isOpen, onClose, task }: VoiceCoachProps) {
 
     setTimeout(async () => {
       setCallState('connected');
-      const introText = `Hey there. I noticed your task "${task.title}" is at high risk of missing its deadline. What is blocking you right now? Let's crush this together.`;
+      const introText = `Hey there. I noticed your task "${task.title}" might need some attention to stay on track. What is blocking you right now? Let's figure this out together.`;
       setAiResponse(introText);
       setConversation([{ role: 'ai', text: introText }]);
       await speakText(introText);
@@ -219,11 +219,11 @@ export default function VoiceCoach({ isOpen, onClose, task }: VoiceCoachProps) {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
-              <span className="text-xs font-mono text-rose-400 uppercase tracking-widest font-semibold">Active Rescue Intercom</span>
+              <span className="text-xs font-mono text-rose-400 uppercase tracking-widest font-semibold">Active Voice Guide</span>
             </div>
             <div className="flex items-center gap-1.5 bg-rich-violet/40 border border-rich-violet/80 px-2.5 py-1 rounded-full">
               <Sparkles className="w-3.5 h-3.5 text-bright-teal" />
-              <span className="text-xs font-medium text-slate-300">LifePilot Agent (Gemini Powered)</span>
+              <span className="text-xs font-medium text-slate-300">LifePilot Companion (Gemini Powered)</span>
             </div>
           </div>
 
@@ -257,8 +257,8 @@ export default function VoiceCoach({ isOpen, onClose, task }: VoiceCoachProps) {
             </div>
 
             <h3 className="text-2xl font-bold text-off-white mb-2 font-sans tracking-tight">
-              {callState === 'connecting' ? 'Connecting to Agent...' : 
-               isAiSpeaking ? 'Agent Speaking...' : 
+              {callState === 'connecting' ? 'Connecting to Companion...' : 
+               isAiSpeaking ? 'Companion Speaking...' : 
                isListening ? 'Listening...' : 
                isProcessing ? 'Processing Audio...' :
                'Tap Mic to Speak'}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../lib/AuthContext';
-import { LayoutDashboard, CheckSquare, LogOut, BrainCircuit, Menu, X, Home } from 'lucide-react';
+import { LayoutDashboard, CheckSquare, LogOut, BrainCircuit, Menu, X, Lightbulb } from 'lucide-react';
 import ChatBot from '../features/ChatBot';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Tasks & Planning', href: '/tasks', icon: CheckSquare },
-    { name: 'Landing / Pitch', href: '/', icon: Home },
+    { name: 'Smart Alerts', href: '/smart-alerts', icon: Lightbulb },
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="md:hidden h-16 bg-deep-space-violet/90 border-b border-rich-violet/60 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-40">
         <div className="flex items-center">
           <BrainCircuit className="w-6 h-6 text-bright-teal mr-2 animate-pulse" />
-          <span className="text-lg font-semibold tracking-tight text-off-white">LifePilot AI</span>
+          <span className="text-lg font-semibold tracking-tight text-off-white">LifePilot</span>
         </div>
         <button 
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="h-16 flex items-center justify-between px-6 border-b border-rich-violet/60 shrink-0">
           <div className="flex items-center">
             <BrainCircuit className="w-6 h-6 text-bright-teal mr-2" />
-            <h1 className="text-xl font-semibold tracking-tight text-off-white">LifePilot AI</h1>
+            <h1 className="text-xl font-semibold tracking-tight text-off-white">LifePilot</h1>
           </div>
           <button 
             className="md:hidden p-2 text-slate-400 hover:text-bright-teal rounded-md transition-colors"

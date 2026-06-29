@@ -36,36 +36,36 @@ async function seedUserData(userId: string, force: boolean = false) {
       if (existingCount > 0) return;
     }
 
-    // 1. Task 1: Google AI Hackathon Pitch & Video Submission (High Risk, with Active Rescue Plan)
+    // 1. Task 1: Finish Q3 Marketing Strategy (Needs Attention, with Active Focus Plan)
     const task1 = await prisma.task.create({
       data: {
         userId,
-        title: "Google AI Hackathon Pitch & Video Submission",
-        description: "Record and compile the final 3-minute presentation demonstrating the productivity companion's agentic risk engine, rescue plans, and proactive intervention layout.",
+        title: "Finish Q3 Marketing Strategy",
+        description: "Complete the final draft of the Q3 marketing strategy and share it with the team before the weekly review.",
         priority: "Critical",
-        priorityReason: "The hackathon deadline is absolute. Missing it means zero impact. Highest urgency.",
+        priorityReason: "The review meeting is tomorrow morning. We need this document to guide the next quarter's budget.",
         difficulty: "High",
-        estimatedTime: 180,
-        timeReason: "Video recording takes ~1h, editing ~1h, and final rendering/upload ~1h.",
+        estimatedTime: 120,
+        timeReason: "Need to review competitor analysis and finalize budget numbers.",
         status: "Pending",
         deadline: new Date(Date.now() + 3.5 * 60 * 60 * 1000), // 3.5 hours from now
         riskLevel: "High",
-        riskReason: "Deadline is in 3.5 hours. Compiling high-fidelity video demonstrations and syncing voiceovers typically requires 4.5 hours. You are currently 1 hour short of the safe buffer.",
+        riskReason: "Deadline is in 3.5 hours. Writing the executive summary and formatting usually takes at least 2 hours.",
         rescuePlan: JSON.stringify([
-          { timeframe: "Next 15m", action: "Outline 3 killer feature highlights to showcase (avoid empty larping or over-complex slides).", reason: "Scope reduction is the only way to save time.", orderRationale: "Must know what to shoot before recording." },
-          { timeframe: "Next 45m", action: "Record a single-take raw desktop demonstration showing live user interventions.", reason: "Single takes avoid editing overhead.", orderRationale: "Raw footage is needed for voiceover." },
-          { timeframe: "Next 30m", action: "Record clean voiceover audio and synchronize timeline without heavy transitions.", reason: "Good audio masks simple visuals.", orderRationale: "Audio dictates video pacing." },
-          { timeframe: "Before Deadline", action: "Directly publish and host on a fast delivery source (YouTube/Drive) to bypass rendering delays.", reason: "Cloud rendering is faster.", orderRationale: "Last possible step." }
+          { timeframe: "Next 15m", action: "Review and finalize the budget table.", reason: "This is the most critical part for the meeting.", orderRationale: "Numbers need to be locked in first." },
+          { timeframe: "Next 45m", action: "Write the executive summary.", reason: "Leadership will read this first.", orderRationale: "Needs a fresh mind." },
+          { timeframe: "Next 30m", action: "Format the document and add charts.", reason: "Makes it presentable.", orderRationale: "Visual polish." },
+          { timeframe: "Before Deadline", action: "Send to team via email.", reason: "Needs to be in their inbox before the day ends.", orderRationale: "Final step." }
         ])
       }
     });
 
     // Create steps for Task 1
     const steps1 = [
-      { step: "Draft core script and highlight pointers", completionStatus: true },
-      { step: "Configure pristine dev databases and layout state", completionStatus: true },
-      { step: "Screen-record the active Rescue Mode interactive loop", completionStatus: false },
-      { step: "Render & submit final form before submission deadline", completionStatus: false }
+      { step: "Finalize budget numbers", completionStatus: true },
+      { step: "Review competitor analysis", completionStatus: true },
+      { step: "Write executive summary", completionStatus: false },
+      { step: "Format and send", completionStatus: false }
     ];
     for (const s of steps1) {
       await prisma.aIPlan.create({
@@ -77,27 +77,28 @@ async function seedUserData(userId: string, force: boolean = false) {
       });
     }
 
-    // 2. Task 2: Polish Responsive Dashboard Bento Grid (High Priority, Pending, Medium Risk)
+    // 2. Task 2: Renew Car Insurance (High Priority, Pending, Medium Risk)
     const task2 = await prisma.task.create({
       data: {
         userId,
-        title: "Polish Responsive Dashboard Bento Grid",
-        description: "Review CSS boundaries, padding rhythms, and touch target area sizes on mobile devices to ensure a highly tactile, professional product experience.",
+        title: "Renew Car Insurance",
+        description: "Compare quotes from 3 providers and renew the policy before it expires.",
         priority: "High",
-        priorityReason: "UX polish heavily impacts evaluation criteria.",
+        priorityReason: "Driving without insurance is illegal. Must be done before current policy ends.",
         difficulty: "Medium",
-        estimatedTime: 90,
-        timeReason: "Testing across multiple device sizes requires manual verification.",
+        estimatedTime: 60,
+        timeReason: "Need to fill out forms on multiple websites to compare.",
         status: "Pending",
         deadline: new Date(Date.now() + 24 * 60 * 60 * 1000), // Tomorrow
         riskLevel: "Medium",
-        riskReason: "Aesthetic details might expand beyond initial time window, but current progress is comfortable."
+        riskReason: "You tend to procrastinate on administrative tasks, but you still have a day left."
       }
     });
 
     const steps2 = [
-      { step: "Ensure all touch-targets are >= 44px on smaller screens", completionStatus: false },
-      { step: "Check typography pairings and letter-spacing tracking under high contrast", completionStatus: false }
+      { step: "Gather current policy details", completionStatus: false },
+      { step: "Get quotes from two other providers", completionStatus: false },
+      { step: "Make payment", completionStatus: false }
     ];
     for (const s of steps2) {
       await prisma.aIPlan.create({
@@ -109,17 +110,17 @@ async function seedUserData(userId: string, force: boolean = false) {
       });
     }
 
-    // 3. Task 3: Core Database Migration and Schema Polish (Medium Priority, Completed)
+    // 3. Task 3: Weekly Groceries (Medium Priority, Completed)
     await prisma.task.create({
       data: {
         userId,
-        title: "Core Database Migration & Schema Polish",
-        description: "Set up local SQLite architecture, map structural relations, and create robust cascades for user-authored items.",
+        title: "Weekly Groceries",
+        description: "Buy vegetables, milk, eggs, and bread from the local supermarket.",
         priority: "Medium",
-        priorityReason: "Foundational work required for all subsequent features.",
-        difficulty: "High",
-        estimatedTime: 120,
-        timeReason: "Database schemas need careful planning to avoid rewrites.",
+        priorityReason: "Need food for the week.",
+        difficulty: "Low",
+        estimatedTime: 45,
+        timeReason: "Standard trip to the store.",
         status: "Completed",
         progress: 100,
         deadline: new Date(Date.now() - 36 * 60 * 60 * 1000), // 36 hours ago
@@ -127,17 +128,17 @@ async function seedUserData(userId: string, force: boolean = false) {
       }
     });
 
-    // 4. Task 4: Integrate SDK Error Backoff Retries (Medium Priority, Completed)
+    // 4. Task 4: Call Mom (Medium Priority, Completed)
     await prisma.task.create({
       data: {
         userId,
-        title: "Integrate Gemini SDK Error Backoff Retries",
-        description: "Add robust handlers for transient network disruptions and automated fallback strategies for API quotas.",
+        title: "Call Mom",
+        description: "Catch up and ask about her weekend.",
         priority: "Medium",
-        priorityReason: "Reliability is key for agentic systems.",
+        priorityReason: "Important to stay in touch.",
         difficulty: "Low",
-        estimatedTime: 45,
-        timeReason: "Standard retry logic implementation.",
+        estimatedTime: 30,
+        timeReason: "Usually talk for about half an hour.",
         status: "Completed",
         progress: 100,
         deadline: new Date(Date.now() - 12 * 60 * 60 * 1000), // 12 hours ago
@@ -147,9 +148,9 @@ async function seedUserData(userId: string, force: boolean = false) {
 
     // 5. Seed some Habits to make the database robust
     const habits = [
-      { habitName: "60-Min Focused Deep Work Sprints", streak: 5 },
-      { habitName: "Resolve high-priority schedule conflicts first", streak: 3 },
-      { habitName: "Complete daily planning routine", streak: 8 }
+      { habitName: "Read 30 pages", streak: 5 },
+      { habitName: "Morning Workout", streak: 3 },
+      { habitName: "Inbox Zero", streak: 8 }
     ];
     for (const h of habits) {
       await prisma.habit.create({
@@ -183,10 +184,10 @@ async function seedUserData(userId: string, force: boolean = false) {
 
     // 7. Seed AI Activity logs for immediate demo value
     const activities = [
-      { type: 'analysis', message: 'Simulated 14 schedule permutations to optimize for Hackathon Pitch deadline.', offset: 300000 },
-      { type: 'prediction', message: 'Rejected Plan A (Delay Pitch): Predicted 100% failure rate.', offset: 150000 },
-      { type: 'intervention', message: 'Triggered Emergency Rescue Plan: Scope reduction enforced to stabilize confidence.', offset: 60000 },
-      { type: 'recalculation', message: 'Continuous monitoring active: Current confidence stabilized at 30%.', offset: 10000 }
+      { type: 'analysis', message: 'Analyzed your schedule: You have a busy afternoon, suggested doing the Q3 Strategy now.', offset: 300000 },
+      { type: 'prediction', message: 'Task "Renew Car Insurance" is due tomorrow. Moving it to High Priority.', offset: 150000 },
+      { type: 'intervention', message: 'Created an action plan for Q3 Marketing Strategy to help you finish on time.', offset: 60000 },
+      { type: 'recalculation', message: 'Adjusted timeline estimates based on your recent work pace.', offset: 10000 }
     ];
     for (const a of activities) {
       await prisma.aiActivity.create({
@@ -329,8 +330,6 @@ const requireAuth = async (req: AuthRequest, res: Response, next: NextFunction) 
           password: 'restored-session-password'
         }
       });
-      // Seed high-fidelity sample workspace data immediately so they never see an empty app
-      await seedUserData(decoded.userId);
     }
 
     req.userId = decoded.userId;
@@ -353,8 +352,6 @@ app.post('/api/auth/register', async (req, res) => {
     const user = await prisma.user.create({
       data: { name, email, password: hashedPassword }
     });
-    // Seed high-fidelity sample workspace data immediately so they never see an empty app
-    await seedUserData(user.id);
     const token = jwt.sign({ userId: user.id }, JWT_SECRET);
     res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
   } catch (err: any) {
@@ -371,8 +368,6 @@ app.post('/api/auth/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = jwt.sign({ userId: user.id }, JWT_SECRET);
-    // Auto-seed if the workspace is empty
-    await seedUserData(user.id);
     res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -382,10 +377,6 @@ app.post('/api/auth/login', async (req, res) => {
 // --- TASK ROUTES ---
 app.get('/api/tasks', requireAuth, async (req: AuthRequest, res) => {
   try {
-    const existingCount = await prisma.task.count({ where: { userId: req.userId } });
-    if (existingCount === 0) {
-      await seedUserData(req.userId);
-    }
     const tasks = await prisma.task.findMany({
       where: { userId: req.userId },
       include: { aiPlans: true },
@@ -594,24 +585,24 @@ Return ONLY a JSON object:
   }
 });
 
-// --- LAST MINUTE RESCUE MODE ---
+// --- LAST MINUTE FOCUS MODE ---
 app.post('/api/ai/rescue-plan', requireAuth, async (req: AuthRequest, res) => {
   try {
     const { taskId, title, description, deadline, timeRemaining } = req.body;
     
-    const prompt = `This task is at HIGH risk of missing its deadline. Generate a strict emergency execution "Rescue Plan".
+    const prompt = `This task is at HIGH risk of missing its deadline. Generate a focused step-by-step "Focus Plan".
 Task: ${title} - ${description || ''}
 Deadline: ${deadline}
 Time Remaining: ${timeRemaining}
 
-Create an hour-by-hour (or minute-by-minute) breakdown to forcefully finish it on time. Focus ONLY on critical path.
+Create a clear breakdown to help finish it on time. Focus ONLY on the most important actions.
 Return ONLY a JSON object:
 {
   "plan": [
     { 
       "timeframe": "Hour 1", 
       "action": "Research core concepts",
-      "reason": "Why this specific action is the most critical first step",
+      "reason": "Why this specific action is the most important first step",
       "orderRationale": "Why this must happen before the next step"
     }
   ]
@@ -726,10 +717,6 @@ Return ONLY a valid JSON object matching this schema:
 // --- DASHBOARD DATA ---
 app.get('/api/dashboard', requireAuth, async (req: AuthRequest, res) => {
   try {
-    const existingCount = await prisma.task.count({ where: { userId: req.userId } });
-    if (existingCount === 0) {
-      await seedUserData(req.userId);
-    }
     const tasks = await prisma.task.findMany({
       where: { userId: req.userId },
       include: { aiPlans: true }
@@ -741,10 +728,12 @@ app.get('/api/dashboard', requireAuth, async (req: AuthRequest, res) => {
     const priorityTasks = tasks.filter(t => t.priority === 'Critical' || t.priority === 'High');
     
     // Agentic metrics
-    const overallConfidence = Math.max(30, 95 - (tasks.filter(t => t.riskLevel === 'High').length * 15));
+    const highRiskCount = tasks.filter(t => t.riskLevel === 'High').length;
+    const overallConfidence = Math.max(30, 95 - (highRiskCount * 15));
+    const withoutGuidance = Math.max(10, overallConfidence - (highRiskCount > 0 ? 60 : 15));
     const confidenceReason = "Calculated by subtracting a 15% penalty for each High-Risk task on your critical path.";
     
-    const safeBufferMins = 120 - (tasks.filter(t => t.riskLevel === 'High').length * 45);
+    const safeBufferMins = 120 - (highRiskCount * 45);
     const safeBufferReason = "Derived from average historical task completion times vs active scheduled deadlines.";
 
     const liveFeedRaw = await prisma.aiActivity.findMany({
@@ -761,6 +750,7 @@ app.get('/api/dashboard', requireAuth, async (req: AuthRequest, res) => {
         pendingCount: pendingTasks,
         totalTasks: tasks.length,
         overallConfidence,
+        withoutGuidance,
         confidenceReason,
         safeBufferMins,
         safeBufferReason
@@ -826,7 +816,7 @@ app.post('/api/ai/chat', requireAuth, async (req: AuthRequest, res) => {
       ? `Here is the user's current task list:\n${JSON.stringify(tasks, null, 2)}` 
       : `The user has no tasks scheduled right now.`;
 
-    const systemInstruction = `You are LifePilot AI, an autonomous intelligent productivity agent. Your goal is to predict risks and prevent missed deadlines.
+    const systemInstruction = `You are LifePilot, an autonomous intelligent productivity agent. Your goal is to predict risks and prevent missed deadlines.
     
 Context:
 ${tasksContext}
@@ -841,7 +831,7 @@ CRITICAL INSTRUCTIONS:
 If a task is at high risk, warn them, explain the risk calculation, and provide a quick action to intervene.`;
 
     const recentHistory = history?.slice(-4).map((m: any) => `${m.sender}: ${m.text}`).join('\n') || '';
-    const finalPrompt = `${recentHistory}\nUser: ${message}\nLifePilot AI:`;
+    const finalPrompt = `${recentHistory}\nUser: ${message}\nLifePilot:`;
 
     let responseText = "";
     try {
@@ -910,22 +900,61 @@ app.post('/api/ai/stt', requireAuth, upload.single('audio'), async (req: AuthReq
   }
 });
 
-// --- DEEPGRAM TTS ---
+// --- GEMINI TTS ---
 app.post('/api/ai/tts', requireAuth, async (req: AuthRequest, res) => {
   try {
-    if (!deepgram) return res.status(500).json({ error: 'Deepgram API not configured' });
+    if (!ai) return res.status(500).json({ error: 'Gemini API not configured' });
     const { text } = req.body;
     if (!text) return res.status(400).json({ error: 'No text provided' });
 
-    const response = await deepgram.speak.v1.audio.generate({
-      text,
-      model: 'aura-asteria-en'
+    const response = await ai.models.generateContent({
+      model: "gemini-3.1-flash-tts-preview",
+      contents: [{ parts: [{ text }] }],
+      config: {
+        responseModalities: ["AUDIO"],
+        speechConfig: {
+            voiceConfig: {
+              prebuiltVoiceConfig: { voiceName: 'Kore' },
+            },
+        },
+      },
     });
+
+    const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
+    if (!base64Audio) {
+      throw new Error("No audio returned from Gemini");
+    }
+
+    const pcmData = Buffer.from(base64Audio, 'base64');
     
-    const buffer = await response.arrayBuffer();
-    res.set('Content-Type', 'audio/mp3');
-    res.send(Buffer.from(buffer));
+    // Add a WAV header for 1 channel, 24000Hz, 16-bit PCM
+    const numChannels = 1;
+    const sampleRate = 24000;
+    const bitsPerSample = 16;
+    const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+    const blockAlign = numChannels * (bitsPerSample / 8);
+    
+    const wavHeader = Buffer.alloc(44);
+    wavHeader.write('RIFF', 0);
+    wavHeader.writeUInt32LE(36 + pcmData.length, 4);
+    wavHeader.write('WAVE', 8);
+    wavHeader.write('fmt ', 12);
+    wavHeader.writeUInt32LE(16, 16); // Subchunk1Size
+    wavHeader.writeUInt16LE(1, 20); // AudioFormat (PCM)
+    wavHeader.writeUInt16LE(numChannels, 22);
+    wavHeader.writeUInt32LE(sampleRate, 24);
+    wavHeader.writeUInt32LE(byteRate, 28);
+    wavHeader.writeUInt16LE(blockAlign, 32);
+    wavHeader.writeUInt16LE(bitsPerSample, 34);
+    wavHeader.write('data', 36);
+    wavHeader.writeUInt32LE(pcmData.length, 40);
+    
+    const audioBuffer = Buffer.concat([wavHeader, pcmData]);
+    
+    res.set('Content-Type', 'audio/wav');
+    res.send(audioBuffer);
   } catch (err: any) {
+    console.error('TTS Error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -935,6 +964,20 @@ app.post('/api/seed-sample', requireAuth, async (req: AuthRequest, res) => {
   try {
     await seedUserData(req.userId, true);
     res.json({ success: true, message: "Sample dataset successfully seeded!" });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// --- CLEAR ALL DATA ROUTE ---
+app.post('/api/clear-data', requireAuth, async (req: AuthRequest, res) => {
+  try {
+    await prisma.aIPlan.deleteMany({ where: { task: { userId: req.userId } } });
+    await prisma.task.deleteMany({ where: { userId: req.userId } });
+    await prisma.habit.deleteMany({ where: { userId: req.userId } });
+    await prisma.analytics.deleteMany({ where: { userId: req.userId } });
+    await prisma.aiActivity.deleteMany({ where: { userId: req.userId } });
+    res.json({ success: true, message: "Workspace cleared." });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

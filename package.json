@@ -9,8 +9,7 @@
     "start": "node dist/server.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit",
-    "start": "node dist/server.cjs"
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@deepgram/sdk": "^5.5.0",
@@ -26,7 +25,7 @@
     "date-fns": "^4.4.0",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
-    "firebase": "^12.15.0",
+    "firebase": "^10.8.0",
     "firebase-admin": "^14.1.0",
     "framer-motion": "^12.40.0",
     "google-auth-library": "^10.9.0",

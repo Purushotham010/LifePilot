@@ -1,5 +1,5 @@
 {
-  "name": "LifePilot AI",
+  "name": "LifePilot",
   "description": "An AI-powered productivity companion that plans, predicts, prioritizes, and helps users complete tasks before deadlines are missed.",
   "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

@@ -35,7 +35,7 @@ export default function Landing() {
               <BrainCircuit className="w-5 h-5 text-white" />
             </div>
             <span className="font-sans font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-200">
-              LifePilot AI
+              LifePilot
             </span>
           </div>
 
@@ -68,7 +68,7 @@ export default function Landing() {
                   className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/25 flex items-center gap-1.5"
                   id="nav-register-btn"
                 >
-                  Rescue My Deadlines
+                  Get Started Free
                 </Link>
               </>
             )}
@@ -85,7 +85,7 @@ export default function Landing() {
           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold tracking-wide mb-8"
         >
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-          <span>Next-Generation Productivity: Proactive AI Agent</span>
+          <span>Next-Generation Productivity: Proactive AI Assistant</span>
         </motion.div>
 
         <motion.h1 
@@ -106,7 +106,7 @@ export default function Landing() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
         >
-          Passive task lists are dead. Meet the agentic companion that predicts scheduling risks, builds automated action plans, and actively intervenes to rescue your work.
+          Passive task lists are dead. Meet the smart companion that anticipates delays, builds automated action plans, and proactively guides your work.
         </motion.p>
 
         <motion.div 
@@ -120,7 +120,7 @@ export default function Landing() {
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold hover:from-indigo-500 hover:to-violet-500 transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 group text-base"
             id="hero-cta-primary"
           >
-            {user ? "Enter LifePilot Workspace" : "Rescue My Deadlines"} 
+            {user ? "Enter LifePilot Workspace" : "Start Achieving More"} 
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
           <a 
@@ -128,7 +128,7 @@ export default function Landing() {
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold hover:bg-slate-800 hover:text-white transition-all flex items-center justify-center gap-2 text-base"
             id="hero-cta-secondary"
           >
-            See Agentic Rescue Mode
+            See Guided Mode in Action
           </a>
         </motion.div>
 
@@ -145,7 +145,7 @@ export default function Landing() {
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle className="w-4 h-4 text-emerald-500" />
-            <span>AI Risk Prediction Engine</span>
+            <span>AI Timeline Prediction</span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle className="w-4 h-4 text-emerald-500" />
@@ -154,15 +154,15 @@ export default function Landing() {
         </motion.div>
       </section>
 
-      {/* Interactive Agentic Showcase Section */}
+      {/* Interactive Assistant Showcase Section */}
       <section id="showcase" className="relative z-10 py-16 bg-slate-900/40 border-y border-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold tracking-tight text-white">
-              Watch the Agent Plan & Intervene
+              Watch the Assistant Plan & Guide
             </h2>
             <p className="text-slate-400 mt-3">
-              Unlike legacy todo apps, LifePilot tracks your load, analyzes difficulty, and automatically steps in when a critical path is threatened.
+              Unlike legacy todo apps, LifePilot tracks your load, analyzes difficulty, and automatically steps in when important tasks are slipping.
             </p>
           </div>
 
@@ -174,9 +174,9 @@ export default function Landing() {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-2">
                     <span className="w-3 h-3 rounded-full bg-rose-500 animate-pulse" />
-                    <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Scheduling Risk Detected</span>
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Timeline Needs Attention</span>
                   </div>
-                  <span className="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">PROACTIVE INTERVENTION</span>
+                  <span className="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded">PROACTIVE GUIDANCE</span>
                 </div>
 
                 <div className="space-y-4">
@@ -194,7 +194,7 @@ export default function Landing() {
 
                   {/* Simulated Plan */}
                   <div className="bg-slate-950/60 rounded-2xl p-5 border border-slate-800/80">
-                    <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-3">AI GENERATED CRITICAL PATH</span>
+                    <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-3">AI GENERATED FOCUS PLAN</span>
                     <ul className="space-y-3">
                       <li className="flex items-start text-sm text-slate-300">
                         <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs shrink-0 mr-3 mt-0.5">✓</div>
@@ -216,7 +216,7 @@ export default function Landing() {
               <div className="mt-8 pt-6 border-t border-slate-800/60 flex items-center justify-between">
                 <div className="flex items-center space-x-2 text-xs text-slate-400">
                   <Clock className="w-4 h-4 text-slate-500" />
-                  <span>Risk Level: <strong className="text-rose-400">High Risk</strong></span>
+                  <span>Status: <strong className="text-rose-400">Needs Attention</strong></span>
                 </div>
                 <Link 
                   to="/register" 
@@ -232,7 +232,7 @@ export default function Landing() {
               <div className="space-y-6">
                 <div className="flex items-center space-x-2">
                   <BrainCircuit className="w-5 h-5 text-indigo-400" />
-                  <span className="text-sm font-bold text-white">Proactive Intervention</span>
+                  <span className="text-sm font-bold text-white">Proactive Guidance</span>
                 </div>
 
                 <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
@@ -240,13 +240,13 @@ export default function Landing() {
                     Most task managers stay quiet when you are falling behind.
                   </p>
                   <p>
-                    <strong>LifePilot AI is agentic.</strong> It constantly monitors your load and steps, and prompts you with suggestions, e.g.:
+                    <strong>LifePilot is your proactive companion.</strong> It constantly monitors your load and steps in with helpful suggestions, e.g.:
                   </p>
                   <blockquote className="border-l-2 border-indigo-500 pl-3 py-1 text-slate-400 italic text-xs">
-                    "I notice you haven't started your video recording task yet. Based on historic trends, recording takes average of 2.5 hours. To prevent missing the midnight deadline, I recommend initiating Rescue Mode now."
+                    "I notice you haven't started your video recording task yet. Based on historic trends, recording takes average of 2.5 hours. To prevent slipping past midnight, I recommend starting Focus Mode now."
                   </blockquote>
                   <p>
-                    It then automatically splits complex steps, prioritizes micro-actions, and helps you execute without delay.
+                    It then automatically splits complex steps, prioritizes micro-actions, and helps you work smoothly without delay.
                   </p>
                 </div>
               </div>
@@ -266,10 +266,10 @@ export default function Landing() {
       <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-sans">
-            Designed for High-Velocity Execution
+            Designed for Smooth Workflows
           </h2>
           <p className="text-slate-400 mt-4 text-base">
-            Engineered from the ground up for builders, students, and professionals who cannot afford to miss their targets.
+            Engineered from the ground up for builders, students, and professionals who want to stay calmly on track.
           </p>
         </div>
 
@@ -290,7 +290,7 @@ export default function Landing() {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6">
               <ShieldAlert className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Deadline Risk Engine</h3>
+            <h3 className="text-xl font-bold text-white mb-2">Deadline Timeline Engine</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               Calculates task density, difficulty levels, and time remaining to alert you of potential scheduling bottlenecks before they occur.
             </p>
@@ -301,7 +301,7 @@ export default function Landing() {
             <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center text-violet-400 mb-6">
               <MessageSquare className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Rescue Chat Assistant</h3>
+            <h3 className="text-xl font-bold text-white mb-2">Guided Chat Assistant</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               Stuck? Procrastinating? Engage in a focus chat with LifePilot to reset your trajectory, find focus blocks, and eliminate blockers.
             </p>
@@ -319,7 +319,7 @@ export default function Landing() {
             Stop Managing Tasks. Start Finishing Them.
           </h2>
           <p className="text-indigo-200 mt-4 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Take control of your schedule with the proactive companion built for high stakes. Get started in less than a minute.
+            Take control of your schedule with the proactive companion built for peace of mind. Get started in less than a minute.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -328,7 +328,7 @@ export default function Landing() {
               className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-indigo-950 font-bold hover:bg-slate-100 transition-colors shadow-lg flex items-center justify-center gap-2 text-base"
               id="cta-footer-primary"
             >
-              Start Free Rescue Mode <ArrowRight className="w-4 h-4 text-indigo-950" />
+              Start Free Guided Mode <ArrowRight className="w-4 h-4 text-indigo-950" />
             </Link>
           </div>
         </div>
@@ -339,9 +339,9 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center space-x-2">
             <BrainCircuit className="w-4 h-4 text-indigo-500" />
-            <span className="font-semibold text-slate-400">LifePilot AI</span>
+            <span className="font-semibold text-slate-400">LifePilot</span>
           </div>
-          <p>© 2026 LifePilot AI. Proactive task rescue. Built to excel.</p>
+          <p>© 2026 LifePilot. Proactive task guidance. Built for focus.</p>
         </div>
       </footer>
     </div>

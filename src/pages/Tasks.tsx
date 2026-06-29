@@ -119,6 +119,22 @@ export default function Tasks() {
     }
   };
 
+  const handleClearData = async () => {
+    try {
+      setIsResetting(true);
+      const res = await fetchAPI('/clear-data', {
+        method: 'POST'
+      });
+      if (res.success) {
+        loadTasks();
+      }
+    } catch (err) {
+      console.error("Failed to clear data:", err);
+    } finally {
+      setIsResetting(false);
+    }
+  };
+
   const handleAiCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!aiInput.trim()) return;
@@ -251,10 +267,17 @@ export default function Tasks() {
         <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={handleRestoreDemo}
-            className="px-4 py-2 text-xs font-semibold text-bright-teal bg-bright-teal/10 hover:bg-bright-teal/20 border border-bright-teal/30 rounded-xl transition duration-200 cursor-pointer"
+            className="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition duration-200 cursor-pointer"
             disabled={isResetting}
           >
-            {isResetting ? "Seeding..." : "Reset to Sample Scenario"}
+            {isResetting ? "Loading..." : "Load Sample Data"}
+          </button>
+          <button
+            onClick={handleClearData}
+            className="px-4 py-2 text-xs font-semibold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 rounded-xl transition duration-200 cursor-pointer"
+            disabled={isResetting}
+          >
+            {isResetting ? "Clearing..." : "Clear Sample Data"}
           </button>
           <Link
             to="/"
@@ -338,18 +361,18 @@ export default function Tasks() {
                       )}
                     </div>
                     
-                    {/* RISK BADGE */}
+                    {/* ALERT BADGE */}
                     {task.riskLevel && task.riskLevel !== 'Low' && task.status !== 'Completed' && (
                       <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border flex items-center gap-1
                         ${task.riskLevel === 'High' ? 'bg-rose-500/10 text-rose-400 border-rose-500/40 animate-pulse' : 'bg-orange-500/10 text-orange-400 border-orange-500/20'}`}>
                         <AlertTriangle className="w-3 h-3" />
-                        {task.riskLevel} Risk
+                        {task.riskLevel} Alert
                       </span>
                     )}
                   </div>
                   <p className="text-sm text-slate-400 line-clamp-2">{task.description}</p>
                   
-                  {/* RISK REASON */}
+                  {/* ALERT REASON */}
                   {task.riskReason && task.riskLevel === 'High' && task.status !== 'Completed' && (
                     <p className="text-xs text-rose-400/80 mt-1.5 flex items-start gap-1 max-w-lg">
                       <ShieldAlert className="w-3.5 h-3.5 shrink-0 mt-0.5" />
@@ -393,15 +416,15 @@ export default function Tasks() {
                 </div>
               </div>
 
-              {/* AI Plan Section & Rescue Mode */}
+              {/* AI Plan Section & Focus Mode */}
               <div className="mt-5 border-t border-rich-violet/60 pt-4">
                 
-                {/* RESCUE PLAN DISPLAY */}
+                {/* FOCUS PLAN DISPLAY */}
                 {task.rescuePlan ? (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h4 className="text-xs font-semibold uppercase tracking-wider text-rose-400 flex items-center gap-1">
-                        <Flame className="w-3.5 h-3.5" /> Emergency Rescue Plan Active
+                        <Flame className="w-3.5 h-3.5" /> Action Plan Active
                       </h4>
                       <button
                         onClick={() => {
@@ -411,7 +434,7 @@ export default function Tasks() {
                         className="text-xs font-semibold text-bright-teal hover:text-bright-teal/80 flex items-center gap-1.5 border border-bright-teal/30 px-2.5 py-1 rounded-lg bg-bright-teal/10 hover:bg-bright-teal/25 transition cursor-pointer"
                       >
                         <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
-                        Live Voice Intercom
+                        Live Voice Guide
                       </button>
                     </div>
                     <ul className="space-y-2">
@@ -471,7 +494,7 @@ export default function Tasks() {
                       "What if..." Simulator
                     </button>
 
-                    {/* TRIGGER RESCUE PLAN BUTTON */}
+                    {/* TRIGGER FOCUS PLAN BUTTON */}
                     {task.riskLevel === 'High' && task.status !== 'Completed' && (
                       <button 
                         onClick={() => handleRescuePlan(task)}
@@ -479,7 +502,7 @@ export default function Tasks() {
                         className="text-sm font-medium text-rose-400 hover:text-rose-300 flex items-center gap-1.5 transition-colors ml-auto border border-rose-500/40 px-3 py-1 rounded-full bg-rose-500/10 hover:bg-rose-500/20"
                       >
                         {generatingRescue === task.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Flame className="w-4 h-4" />}
-                        Generate Rescue Plan
+                        Generate Focus Plan
                       </button>
                     )}
                   </div>

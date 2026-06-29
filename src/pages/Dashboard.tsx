@@ -64,6 +64,29 @@ export default function Dashboard() {
     }
   };
 
+  const handleClearData = async () => {
+    try {
+      setIsResetting(true); // Reuse the same loading state for simplicity
+      const res = await fetchAPI('/clear-data', {
+        method: 'POST'
+      });
+      if (res.success) {
+        loadData();
+      }
+    } catch (err) {
+      console.error("Failed to clear data:", err);
+    } finally {
+      setIsResetting(false);
+    }
+  };
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
+
   if (!data) return null;
 
   const atRiskTasks = data.priorityTasks.filter((t: any) => t.riskLevel === 'High');
@@ -72,7 +95,7 @@ export default function Dashboard() {
     <div className="space-y-8 max-w-5xl mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-off-white">Good morning, {user?.name ? user.name.split(' ')[0] : 'User'}</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-off-white">{getGreeting()}, {user?.name ? user.name.split(' ')[0] : 'User'}</h1>
           <p className="text-slate-400 mt-1">Here is your productivity snapshot for today.</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -88,9 +111,11 @@ export default function Dashboard() {
                   });
                   if (syncRes) loadData();
                 }
-              } catch (e) {
+              } catch (e: any) {
                 console.error("Calendar sync error", e);
-                alert("Failed to connect Google Calendar. Ensure popups are allowed.");
+                if (e.code !== 'auth/popup-closed-by-user') {
+                  alert("Failed to connect Google Calendar. Ensure popups are allowed.");
+                }
               }
             }}
             className="px-4 py-2 text-xs font-semibold text-emerald-400 bg-emerald-400/10 hover:bg-emerald-400/20 border border-emerald-400/30 rounded-xl transition duration-200 cursor-pointer"
@@ -99,10 +124,17 @@ export default function Dashboard() {
           </button>
           <button
             onClick={handleRestoreDemo}
-            className="px-4 py-2 text-xs font-semibold text-bright-teal bg-bright-teal/10 hover:bg-bright-teal/20 border border-bright-teal/30 rounded-xl transition duration-200 cursor-pointer"
+            className="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition duration-200 cursor-pointer"
             disabled={isResetting}
           >
-            {isResetting ? "Seeding..." : "Reset to Sample Scenario"}
+            {isResetting ? "Loading..." : "Load Sample Data"}
+          </button>
+          <button
+            onClick={handleClearData}
+            className="px-4 py-2 text-xs font-semibold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 rounded-xl transition duration-200 cursor-pointer"
+            disabled={isResetting}
+          >
+            {isResetting ? "Clearing..." : "Clear Sample Data"}
           </button>
           <Link
             to="/"
@@ -113,8 +145,32 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-deep-space-violet/40 p-6 rounded-[20px] border border-rich-violet/60 backdrop-blur-sm shadow-none relative overflow-hidden group flex flex-col h-full">
+      {data.metrics.totalTasks === 0 ? (
+        <div className="bg-deep-space-violet/40 border border-rich-violet/60 rounded-[20px] p-12 flex flex-col items-center justify-center text-center">
+          <div className="w-16 h-16 bg-bright-teal/10 rounded-full flex items-center justify-center mb-6">
+            <Target className="w-8 h-8 text-bright-teal" />
+          </div>
+          <h2 className="text-2xl font-bold text-off-white mb-2">Your Workspace is Empty</h2>
+          <p className="text-slate-400 max-w-md mb-8">
+            You don't have any tasks scheduled. Start by adding your goals or load sample data to see the AI in action.
+          </p>
+          <div className="flex gap-4">
+            <Link to="/tasks" className="px-6 py-3 bg-bright-teal text-deep-space-violet font-semibold rounded-lg hover:bg-bright-teal/90 transition shadow-none">
+              Create a Task
+            </Link>
+            <button
+              onClick={handleRestoreDemo}
+              disabled={isResetting}
+              className="px-6 py-3 text-off-white bg-slate-800 hover:bg-slate-700 border border-slate-600 font-semibold rounded-lg transition duration-200 cursor-pointer shadow-none"
+            >
+              {isResetting ? "Loading..." : "Load Sample Data"}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-deep-space-violet/40 p-6 rounded-[20px] border border-rich-violet/60 backdrop-blur-sm shadow-none relative overflow-hidden group flex flex-col h-full">
           <div className="absolute inset-0 bg-gradient-to-br from-bright-teal/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="flex items-center justify-between mb-4 relative z-10">
             <h3 className="font-semibold text-slate-300 font-sans cursor-pointer flex items-center gap-2" onClick={() => toggleReason('confidence')}>
@@ -170,10 +226,10 @@ export default function Dashboard() {
           
           <div className="mt-auto z-10">
             <div className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-1">Objective</div>
-            <div className="text-lg font-bold text-off-white leading-tight mb-2">Risk Mitigation via Rescue Plan</div>
+            <div className="text-lg font-bold text-off-white leading-tight mb-2">Workflow Support via Focus Plan</div>
             <div className="bg-slate-950/50 p-2 rounded border border-emerald-500/20 text-xs text-slate-300">
               <span className="text-emerald-400 font-semibold block mb-0.5">Action:</span>
-              Stabilizing 1 high-risk critical path task to prevent deadline miss.
+              Supporting 1 urgent task to ensure on-time completion.
             </div>
           </div>
         </div>
@@ -193,7 +249,7 @@ export default function Dashboard() {
             You have <strong className="text-bright-teal bg-bright-teal/10 px-1.5 py-0.5 rounded border border-bright-teal/20">{data.priorityTasks.length} high priority</strong> tasks today. 
             {atRiskTasks.length > 0 ? (
               <span className="block mt-2">
-                <strong className="text-rose-400">Warning:</strong> {atRiskTasks.length} task(s) are at <strong className="text-rose-400">HIGH RISK</strong> of missing deadlines. I have generated a Rescue Plan to stabilize your workflow.
+                <strong className="text-rose-400">Notice:</strong> {atRiskTasks.length} task(s) <strong className="text-rose-400">NEED ATTENTION</strong>. I have generated a Focus Plan to stabilize your workflow.
               </span>
             ) : (
               <span className="block mt-2">
@@ -244,30 +300,32 @@ export default function Dashboard() {
           <div className="flex-1 flex flex-col justify-center space-y-4">
              <div className="bg-rich-violet/20 p-4 rounded-xl border border-rich-violet/40">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-slate-300 font-medium">Without AI Intervention</span>
-                  <span className="text-rose-400 font-bold">25%</span>
+                  <span className="text-slate-300 font-medium">Without AI Guidance</span>
+                  <span className={`font-bold ${data.metrics.withoutGuidance < 50 ? 'text-rose-400' : 'text-amber-400'}`}>{data.metrics.withoutGuidance}%</span>
                 </div>
                 <div className="w-full h-1.5 bg-rich-violet/60 rounded-full mt-2 overflow-hidden">
-                  <div className="h-full bg-rose-500 w-1/4"></div>
+                  <div className={`h-full ${data.metrics.withoutGuidance < 50 ? 'bg-rose-500' : 'bg-amber-400'}`} style={{ width: `${data.metrics.withoutGuidance}%` }}></div>
                 </div>
-                <p className="text-xs text-slate-400 mt-2">High probability of missed deadlines due to buffer exhaustion.</p>
+                <p className="text-xs text-slate-400 mt-2">
+                  {data.metrics.withoutGuidance < 50 ? "High probability of missed deadlines due to buffer exhaustion." : "Moderate risk of falling behind schedule."}
+                </p>
              </div>
              
              <div className="bg-bright-teal/10 p-4 rounded-xl border border-bright-teal/30">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-bright-teal font-medium">With Rescue Plan</span>
+                  <span className="text-bright-teal font-medium">With Focus Plan</span>
                   <span className="text-bright-teal font-bold">{data.metrics.overallConfidence}%</span>
                 </div>
                 <div className="w-full h-1.5 bg-rich-violet/60 rounded-full mt-2 overflow-hidden">
                   <div className="h-full bg-bright-teal" style={{ width: `${data.metrics.overallConfidence}%` }}></div>
                 </div>
-                <p className="text-xs text-bright-teal/80 mt-2">Tasks re-prioritized. Critical path protected.</p>
+                <p className="text-xs text-bright-teal/80 mt-2">Tasks re-prioritized. Important timeline protected.</p>
              </div>
           </div>
         </div>
       </motion.div>
       
-      {/* At-Risk Tasks Highlight Section */}
+      {/* Needs Attention Tasks Highlight Section */}
       {atRiskTasks.length > 0 && (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -276,7 +334,7 @@ export default function Dashboard() {
           className="bg-rose-950/20 border border-rose-500/30 rounded-[20px] p-6"
         >
           <h3 className="text-lg font-semibold text-rose-400 flex items-center gap-2 mb-4">
-            <ShieldAlert className="w-5 h-5" /> Urgent Intervention Required
+            <ShieldAlert className="w-5 h-5" /> Action Required
           </h3>
           <div className="space-y-3">
             {atRiskTasks.map((task: any) => (
@@ -293,7 +351,7 @@ export default function Dashboard() {
                     }}
                     className="text-xs bg-bright-teal/10 text-bright-teal border border-bright-teal/30 px-3 py-1.5 rounded-lg hover:bg-bright-teal/20 transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer font-semibold"
                   >
-                    <PhoneCall className="w-3.5 h-3.5 animate-pulse" /> Start Intercom
+                    <PhoneCall className="w-3.5 h-3.5 animate-pulse" /> Focus Call
                   </button>
                   <Link to="/tasks" className="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/30 px-3 py-1.5 rounded-lg hover:bg-rose-500/20 transition-colors whitespace-nowrap">
                     View Details
@@ -313,6 +371,8 @@ export default function Dashboard() {
         }}
         task={voiceCoachTask}
       />
+      </>
+      )}
     </div>
   );
 }

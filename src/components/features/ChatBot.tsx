@@ -43,7 +43,7 @@ export default function ChatBot() {
           <div className="bg-deep-space-violet px-4 py-3 flex items-center justify-between text-off-white border-b border-rich-violet/60">
             <div className="flex items-center space-x-2">
               <Bot className="w-5 h-5 text-bright-teal" />
-              <span className="font-medium text-off-white">LifePilot AI Assistant</span>
+              <span className="font-medium text-off-white">LifePilot Assistant</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-bright-teal transition-colors">
               <X className="w-5 h-5" />

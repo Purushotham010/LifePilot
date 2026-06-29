@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Landing from './pages/Landing';
+import SmartAlerts from './pages/SmartAlerts';
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isReady } = useAuth();
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
+          <Route path="/smart-alerts" element={<PrivateRoute><SmartAlerts /></PrivateRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
